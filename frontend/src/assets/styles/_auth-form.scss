@@ -1,0 +1,65 @@
+@import "variables";
+
+.container {
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    .form {
+      width: 430px;
+
+      .title {
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 422px;
+
+      }
+
+      .input {
+        box-sizing: border-box;
+        border: 1.50px solid #709fdc;
+        border-radius: 3px;
+        padding: 20px;
+        height: 53px;
+        margin-bottom: 5px;
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .agree {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 40px;
+        padding-top: 5px;
+        input {
+          margin-left: 0;
+        }
+        span {
+          margin-left: 10px;
+          a {
+            color: #709fdc;
+          }
+        }
+      }
+
+      .link {
+        margin-top: 10px;
+        a {
+          color: #709fdc;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .image {
+      margin-right: 27px;
+    }
+  }
+}
+
