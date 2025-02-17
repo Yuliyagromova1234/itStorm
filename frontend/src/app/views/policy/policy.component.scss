@@ -1,0 +1,49 @@
+@import "../../../assets/styles/variables.scss";
+
+ol {
+  counter-reset: section;
+  list-style: none;
+  padding-left: 0;
+}
+
+ol > li {
+  counter-increment: section;
+  margin-bottom: 10px;
+  font-family: $main-family;
+  font-weight: 400;
+}
+
+ol > li:before {
+  content: counter(section) ". ";
+}
+
+ol ol {
+  counter-reset: subsection;
+  padding-left: 15px;
+}
+
+ol ol > li {
+  counter-increment: subsection;
+  margin-bottom: 10px;
+  font-family: $main-family;
+  font-weight: 400;
+}
+
+ol ol > li:before {
+  content: counter(section) "." counter(subsection) ". ";
+  font-family: $main-family;
+  font-weight: 400;
+}
+
+.title {
+  margin-bottom: 15px;
+  &.main-title {
+    margin-bottom: 20px;
+  }
+}
+
+p {
+  font-family: $main-family;
+  font-weight: 400;
+  margin-bottom: 10px;
+}

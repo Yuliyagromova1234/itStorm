@@ -1,0 +1,68 @@
+@import "../../../../assets/styles/variables.scss";
+
+
+.header {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  .container {
+    .wrapper-navigation {
+      display: grid;
+      grid-template-columns: minmax(85px, 185px) repeat(2, 1fr) min(240px);
+      align-items: center;
+      font-weight: 500;
+      font-size: 16px;
+
+      .logo img {
+        cursor: pointer;
+      }
+
+      .navbar {
+        display: flex;
+        gap: 30px;
+
+        .navbar-item {
+          a {
+            white-space: nowrap;
+            color: $main-text-color;
+            text-decoration: none;
+          }
+
+          a.active-link {
+            color: $accent-color;
+          }
+        }
+      }
+
+      .phone {
+        text-align: right;
+        margin-right: 15px;
+
+        a {
+          white-space: nowrap;
+          color: $accent-color;
+          text-decoration: none;
+
+          &:hover {
+            color: gray;
+          }
+        }
+      }
+
+      .user {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 7px;
+        cursor: pointer;
+
+        a {
+          color: $main-text-color;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="form">
+      <h1 class="h2 title">Регистрация на сайте</h1>
+      <form [formGroup]="signupForm">
+        <input type="text" placeholder="Ваше имя" class="input" formControlName="name"
+               [style]="{border: signupForm.get('name')?.invalid && signupForm.get('name')?.touched ? '1px solid red' : ''}">
+        <ng-container *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
+          <span [ngStyle]="{'color': 'red', 'text-align': 'center'}">Имя может содержать русские буквы и пробелы. Каждое новое слово - с большой буквы</span>
+        </ng-container>
+        <input type="text" placeholder="Электронная почта" class="input" formControlName="email"
+               [style]="{border: signupForm.get('email')?.invalid && signupForm.get('email')?.touched ? '1px solid red' : ''}">
+        <ng-container *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          <span [ngStyle]="{'color': 'red', 'text-align': 'center'}">Email должен быть корректным</span>
+        </ng-container>
+        <input type="password" placeholder="Пароль" class="input" formControlName="password" autocomplete="off"
+               [style]="{border: signupForm.get('password')?.invalid && signupForm.get('password')?.touched ? '1px solid red' : ''}">
+        <ng-container *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          <span [ngStyle]="{'color': 'red', 'text-align': 'center'}">Пароль должен содержать не менее 8 символов, цифры и заглавные буквы</span>
+        </ng-container>
+        <label class="agree">
+          <input type="checkbox" formControlName="agree">
+          <span>Я принимаю <a routerLink="/policy" fragment="agreementTitle">условия пользовательского соглашения</a> и даю <a routerLink="/policy" fragment="policyTitle">согласие на обработку персональных данных</a>.</span>
+        </label>
+        <button class="btn" type="button" [disabled]="signupForm.invalid" (click)="signUp()">Зарегистрироваться</button>
+        <ng-container *ngIf="signupForm.get('agree')?.invalid && signupForm.get('agree')?.touched">
+          <span [ngStyle]="{'color': 'red', 'text-align': 'center'}">Подтвердите согласие</span>
+        </ng-container>
+      </form>
+      <p class="link">Уже есть аккаунт? <a routerLink="/login">Войдите</a></p>
+    </div>
+
+    <div class="image">
+      <img src="assets/images/signup-image.png" alt="">
+    </div>
+  </div>
+</div>

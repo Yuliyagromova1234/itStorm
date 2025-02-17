@@ -1,0 +1,53 @@
+<ng-container *ngIf="modalState.isVisible">
+  <div class="overlay">
+    <ng-container *ngIf="!modalState.isSubmitted">
+      <div class="order-modal">
+        <h2 class="order-modal-title h2" [innerText]="serviceInput ? 'Заявка на услугу' : 'Закажите бесплатную консультацию!' "></h2>
+        <form class="order-modal-form" [formGroup]="modalForm">
+          <select class="order-modal-form-input" formControlName="service"
+                  [style.border-color]="modalForm.get('service')?.invalid && (modalForm.get('service')?.touched || modalForm.get('service')?.dirty) ? 'red' : '#709FDC'" *ngIf="serviceInput">
+            <option
+              *ngFor="let category of categories; index as i"
+              [ngValue]="category.name">{{category.name}}</option>
+          </select>
+          <div class="order-modal-form-input"
+               [style.border-color]="modalForm.get('name')?.invalid && (modalForm.get('name')?.touched || modalForm.get('name')?.dirty) ? 'red' : '#709FDC'">
+            <input type="text" placeholder="Ваше имя" formControlName="name">
+          </div>
+          <div class="order-modal-form-input"
+               [style.border-color]="modalForm.get('phone')?.invalid && (modalForm.get('phone')?.touched || modalForm.get('phone')?.dirty) ? 'red' : '#709FDC'">
+            <input type="text" placeholder="Ваш номер телефона" formControlName="phone">
+          </div>
+          <button class="btn order-modal-form-btn" type="button" (click)="sendOrder()">Отправить заявку</button>
+          <ng-container *ngIf="modalForm.invalid && modalForm.touched && modalForm.dirty">
+            <div class="order-modal-form-error" [style.color]="'red'">Заполните все обязательные поля</div>
+          </ng-container>
+          <ng-container *ngIf="submitError">
+            <div class="order-modal-form-error" [style]="{color: 'red', textAlign: 'center'}">{{submitErrorMessage}}</div>
+          </ng-container>
+        </form>
+        <div class="close" (click)="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+            <line x1="12.9236" y1="0.629775" x2="0.902769" y2="12.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="modalState.isSubmitted">
+      <div class="order-modal">
+        <h1 class="order-modal-title h1">Спасибо за вашу заявку!</h1>
+        <p class="order-modal-text">Мы свяжемся с вами при первой же возможности.</p>
+        <button class="btn order-modal-form-btn" (click)="closeModal()">Окей</button>
+
+        <div class="close" (click)="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+            <line x1="12.9236" y1="0.629775" x2="0.902769" y2="12.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

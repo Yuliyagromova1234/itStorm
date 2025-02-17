@@ -1,0 +1,15 @@
+<div class="articles-item">
+  <div class="articles-item-wrapper">
+    <div class="articles-item-image">
+      <img [src]="'assets/images/articles/' + article?.image" [alt]="article?.title">
+    </div>
+    <div class="articles-item-text">
+      <div class="articles-item-title">{{ article?.title }}</div>
+      <div class="articles-item-subtitle">{{ article?.description }}</div>
+    </div>
+  </div>
+  <div class="articles-item-footer">
+    <a class="articles-link" routerLink="/articles/{{ article?.url }}">Читать дальше</a>
+  </div>
+  <div class="articles-category">{{ article?.category }}</div>
+</div>

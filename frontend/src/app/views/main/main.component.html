@@ -1,0 +1,247 @@
+<main class="main">
+  <div class="container">
+    <div class="main-slider">
+      <owl-carousel-o [options]="mainSlider" #mainCar (changed)="slidesData($event)">
+        <ng-template carouselSlide id="slide-1">
+          <div class="slide" [style.background-image]="'url(/assets/images/slider/slider-image-1.png)'">
+            <div class="slide-form">
+              <div class="slide-text">
+                <div class="slide-text-offer">Предложение месяца</div>
+                <div class="slide-text-title">Продвижение в Instagram для вашего бизнеса <span>-15%</span>!</div>
+                <div class="slide-text-subtitle"></div>
+                <button class="btn slide-btn" (click)="openModal('SMM')">Подробнее</button>
+              </div>
+              <img src="assets/images/slider/slider-ellipse.png" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide id="slide-2">
+          <div class="slide" [style.background-image]="'url(/assets/images/slider/slider-image-2.png)'">
+            <div class="slide-form">
+              <div class="slide-text">
+                <div class="slide-text-offer">Акция</div>
+                <div class="slide-text-title">Нужен грамотный <span>копирайтер</span>?</div>
+                <div class="slide-text-subtitle">Весь декабрь у нас действует акция <br> на работу копирайтера.</div>
+                <button class="btn slide-btn" (click)="openModal('Копирайтинг')">Подробнее</button>
+              </div>
+              <img src="assets/images/slider/slider-ellipse.png" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide id="slide-3">
+          <div class="slide" [style.background-image]="'url(/assets/images/slider/slider-image-3.png)'">
+            <div class="slide-form">
+              <div class="slide-text">
+                <div class="slide-text-offer">Новость дня</div>
+                <div class="slide-text-title"><span>6 место</span> в ТОП-10 <br> SMM-агенств Москвы!</div>
+                <div class="slide-text-subtitle">Мы благодарим каждого, кто <br> голосовал за нас!</div>
+                <button class="btn slide-btn" (click)="openModal('SMM')">Подробнее</button>
+              </div>
+              <img src="assets/images/slider/slider-ellipse.png" alt="">
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+      <div class="carousel-arrows">
+        <div class="arrow arrow-prev" (click)="mainCar.prev()">
+          <img src="assets/images/slider/prev.png" alt="prev">
+        </div>
+        <div class="arrow arrow-next" (click)="mainCar.next()">
+          <img src="assets/images/slider/next.png" alt="next">
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <div class="carousel-dot" (click)="mainCar.to('slide-1')" [ngClass]="{'active': activeSlides === 0}"></div>
+        <div class="carousel-dot" (click)="mainCar.to('slide-2')" [ngClass]="{'active': activeSlides === 1}"></div>
+        <div class="carousel-dot" (click)="mainCar.to('slide-3')" [ngClass]="{'active': activeSlides === 2}"></div>
+      </div>
+    </div>
+
+    <div class="services" id="services">
+      <h2 class="services-title h2">Услуги, которые мы предлагаем</h2>
+      <div class="services-items">
+        <div class="services-item" *ngFor="let service of services">
+          <div class="services-item-wrapper">
+            <img [src]="service.image" [alt]="service.title">
+            <div class="services-item-text">
+              <div class="services-item-title">{{ service.title }}</div>
+              <div class="services-item-subtitle">{{ service.subtitle }}</div>
+            </div>
+          </div>
+          <div class="services-item-footer">
+            <span class="services-item-price">от {{ service.price }}₽</span>
+            <button class="btn services-item-btn" (click)="openModal(service.category)">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about" id="about">
+      <img src="assets/images/about.png" alt="">
+      <div class="about-block">
+        <h2 class="about-title h2">Кто мы и чем мы занимаемся?</h2>
+        <div class="about-text">
+          АйтиШторм — это ваш помощник №1 при решении таких вопросов, как продвижение в сети, разработка сайтов для
+          бизнеса и личного бренда, сторисмейкинг, копирайтинг, маркетинг, разработка визуальной концепции и создание
+          инфопродуктов. Компания была основана в 2019 году и за всё это время смогла выйти в ТОП-10 агенств,
+          предлагающих услуги продвижения в сети.
+        </div>
+        <div class="advantages">
+          <h3 class="advantages-title h3">Наши преимущества</h3>
+          <div class="advantages-items">
+            <div class="advantages-item" *ngFor="let advantage of advantages; let i = index">
+              <div class="advantages-item-number">{{ i + 1 }}</div>
+              <div class="advantages-item-text">
+                <span class="advantages-item-title">{{ advantage.title }}</span>
+                <span class="advantages-item-subtitle">{{ advantage.subtitle }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="articles" *ngIf="articlesPopular">
+      <h2 class="articles-title h2">Популярные статьи из блога</h2>
+      <div class="articles-items">
+        <article-card *ngFor="let article of articlesPopular" [article]="article"></article-card>
+      </div>
+      <a routerLink="/articles" [queryParams]="{page: 1}" class="articles-link">
+        Перейти в блог
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M1.44392 0C1.59871 0 1.75349 0.0565243 1.87569 0.177649L7.1873 5.44254C8.05085 6.29849 8.05085 7.70353 7.1873 8.55948L1.87569 13.8244C1.63944 14.0585 1.2484 14.0585 1.01215 13.8244C0.775898 13.5902 0.775898 13.2026 1.01215 12.9684L6.32376 7.70353C6.7148 7.31593 6.7148 6.68608 6.32376 6.29849L1.01215 1.0336C0.775898 0.799424 0.775898 0.411823 1.01215 0.177649C1.13435 0.064599 1.28914 0 1.44392 0Z"
+            fill="#709FDC"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="reviews" id="reviews">
+      <h2 class="reviews-title h2">Отзывы о нашей работе</h2>
+      <div class="reviews-slider">
+        <owl-carousel-o [options]="reviewsSlider" #reviewsCar (changed)="slidesData($event)">
+          <ng-template carouselSlide>
+            <div class="slide">
+              <div class="slide-person">
+                <div class="slide-person-img">
+                  <img src="assets/images/reviews/person-1.jpg" alt="person">
+                </div>
+                <div class="slide-person-name">Станислав</div>
+              </div>
+              <div class="slide-comment">
+                Спасибо огромное АйтиШторму за прекрасный блог с полезными статьями! Именно они и побудили меня
+                углубиться в тему SMM и начать свою карьеру.
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="slide">
+              <div class="slide-person">
+                <div class="slide-person-img">
+                  <img src="assets/images/reviews/person-2.jpg" alt="person">
+                </div>
+                <div class="slide-person-name">Алёна</div>
+              </div>
+              <div class="slide-comment">
+                Обратилась в АйтиШторм за помощью копирайтера. Ни разу ещё не пожалела! Ребята действительно вкладывают
+                душу в то, что делают, и каждый текст, который я получаю, с нетерпением хочется выложить в сеть.
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="slide">
+              <div class="slide-person">
+                <div class="slide-person-img">
+                  <img src="assets/images/reviews/person-3.jpg" alt="person">
+                </div>
+                <div class="slide-person-name">Мария</div>
+              </div>
+              <div class="slide-comment">
+                Команда АйтиШторма за такой короткий промежуток времени сделала невозможное: от простой фирмы по услуге
+                продвижения выросла в мощный блог о важности личного бренда. Класс!
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+        <div class="carousel-arrows">
+          <div class="arrow arrow-prev" (click)="reviewsCar.prev()">
+            <img src="assets/images/slider/prev-accent.png" alt="prev">
+          </div>
+          <div class="arrow arrow-next" (click)="reviewsCar.next()">
+            <img src="assets/images/slider/next-accent.png" alt="next">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts" id="contacts">
+      <div class="contacts-map">
+        <a
+          href="https://yandex.ru/maps/?um=constructor%3A178f757785adb36f52b775d3ad1eb6d1333396d84f65bff1f3743d6f4649c2d3&amp;source=constructorStatic"
+          target="_blank"><img
+          src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A178f757785adb36f52b775d3ad1eb6d1333396d84f65bff1f3743d6f4649c2d3&amp;width=600&amp;height=431&amp;lang=ru_RU"
+          alt="" style="border: 0;"/></a>
+      </div>
+      <div class="contacts-block">
+        <h2 class="contacts-title h2">Контакты</h2>
+        <div class="contacts-info">
+          <div class="contacts-items">
+            <div class="contacts-item">
+              <div class="contacts-item-title h3">Адрес</div>
+              <div class="contacts-item-content">Главный офис компании АйтиШторм находится по адресу Пресненская наб.,
+                12,
+                Москва, Россия, 123317.
+              </div>
+            </div>
+            <div class="contacts-item">
+              <div class="contacts-item-title h3">Телефон</div>
+              <div class="contacts-item-content">
+                <a href="tel:+74993431334">+7 (499) 343-13-34</a>
+              </div>
+            </div>
+            <div class="contacts-item">
+              <div class="contacts-item-title h3">Электронный адрес</div>
+              <div class="contacts-item-content">
+                <a href="mailto:info@itstorm.com">info@itstorm.com</a>
+              </div>
+            </div>
+            <div class="contacts-item">
+              <div class="contacts-item-title h3">Мы в социальных сетях</div>
+              <div class="contacts-item-content">
+                <a href="https://vk.com/" class="social-item">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M5.73458 0.267334C2.73165 0.267334 0.267578 2.73141 0.267578 5.73434V24.2646C0.267578 27.2675 2.73165 29.7316 5.73458 29.7316H24.2649C27.2678 29.7316 29.7319 27.2675 29.7319 24.2646V5.73434C29.7319 2.73141 27.2678 0.267334 24.2649 0.267334H5.73458ZM5.73458 2.9459H24.2649C25.8186 2.9459 27.0533 4.18056 27.0533 5.73434V24.2646C27.0533 25.8184 25.8186 27.053 24.2649 27.053H5.73458C4.1808 27.053 2.94615 25.8184 2.94615 24.2646V5.73434C2.94615 4.18056 4.1808 2.9459 5.73458 2.9459ZM14.623 9.951C13.6395 9.94053 12.8025 9.951 12.3316 10.1812C12.0177 10.3329 11.7771 10.6782 11.9235 10.6939C12.1067 10.72 12.5199 10.809 12.7397 11.1072C13.0222 11.4891 13.0117 12.3523 13.0117 12.3523C13.0117 12.3523 13.1687 14.7274 12.6298 15.0256C12.2584 15.2297 11.7509 14.8164 10.6523 12.9278C10.0925 11.9547 9.66873 10.8822 9.66873 10.8822C9.66873 10.8822 9.59026 10.6834 9.44378 10.5788C9.2659 10.448 9.02002 10.4061 9.02002 10.4061L6.39899 10.4218C6.39899 10.4218 6.00663 10.4375 5.86537 10.6049C5.73458 10.7619 5.85491 11.0706 5.85491 11.0706C5.85491 11.0706 7.90569 15.8679 10.2285 18.2849C12.3578 20.5031 14.7748 20.3566 14.7748 20.3566H15.8734C15.8734 20.3566 16.203 20.32 16.3704 20.1421C16.5273 19.9747 16.5221 19.6608 16.5221 19.6608C16.5221 19.6608 16.5012 18.1907 17.1813 17.971C17.8562 17.7618 18.7141 19.394 19.6297 20.0218C20.3255 20.4979 20.8539 20.3932 20.8539 20.3932L23.3022 20.3566C23.3022 20.3566 24.5787 20.2781 23.9719 19.2684C23.9248 19.19 23.6214 18.5256 22.1565 17.1653C20.6184 15.7424 20.8225 15.9725 22.6745 13.5085C23.7992 12.007 24.2492 11.0915 24.1079 10.6939C23.9719 10.3224 23.1453 10.4218 23.1453 10.4218L20.3883 10.4375C20.3883 10.4375 20.1842 10.4114 20.0325 10.5003C19.886 10.5892 19.7918 10.7985 19.7918 10.7985C19.7918 10.7985 19.3524 11.9599 18.7717 12.9487C17.5475 15.0309 17.0505 15.146 16.8517 15.0152C16.3861 14.7117 16.5012 13.8014 16.5012 13.158C16.5012 11.1333 16.8098 10.2963 15.9048 10.0766C15.6066 10.0033 15.3869 9.95623 14.623 9.951Z"
+                      fill="#B9D5FD"/>
+                  </svg>
+                </a>
+                <a href="https://facebook.com/" class="social-item">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.9993 0.000488281C6.7298 0.000488281 -0.000732422 6.73102 -0.000732422 15.0005C-0.000732422 23.27 6.7298 30.0005 14.9993 30.0005C23.2687 30.0005 29.9993 23.27 29.9993 15.0005C29.9993 6.73102 23.2687 0.000488281 14.9993 0.000488281ZM14.9993 2.50049C21.9176 2.50049 27.4993 8.08212 27.4993 15.0005C27.4993 21.2847 22.8889 26.4521 16.8596 27.3491V18.6455H20.4192L20.9783 15.0298H16.8596V13.0547C16.8596 11.5534 17.3528 10.2202 18.7566 10.2202H21.0125V7.06592C20.6162 7.01217 19.7776 6.89502 18.1926 6.89502C14.8826 6.89502 12.9436 8.6425 12.9436 12.625V15.0298H9.54028V18.6455H12.9436V27.3174C7.01034 26.3388 2.49927 21.2168 2.49927 15.0005C2.49927 8.08212 8.0809 2.50049 14.9993 2.50049Z"
+                      fill="#B9D5FD"/>
+                  </svg>
+                </a>
+                <a href="https://instagram.com/" class="social-item">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8.93181 0.267334C4.1763 0.267334 0.268311 4.1701 0.268311 8.93084V21.0681C0.268311 25.8236 4.17107 29.7316 8.93181 29.7316H21.0691C25.8246 29.7316 29.7326 25.8289 29.7326 21.0681V8.93084C29.7326 4.17533 25.8298 0.267334 21.0691 0.267334H8.93181ZM8.93181 2.9459H21.0691C24.3807 2.9459 27.054 5.61924 27.054 8.93084V21.0681C27.054 24.3797 24.3807 27.053 21.0691 27.053H8.93181C5.62022 27.053 2.94688 24.3797 2.94688 21.0681V8.93084C2.94688 5.61924 5.62022 2.9459 8.93181 2.9459ZM22.9106 5.87559C22.2357 5.87559 21.6969 6.41445 21.6969 7.08932C21.6969 7.76419 22.2357 8.30305 22.9106 8.30305C23.5855 8.30305 24.1243 7.76419 24.1243 7.08932C24.1243 6.41445 23.5855 5.87559 22.9106 5.87559ZM15.0005 6.96376C10.5798 6.96376 6.96474 10.5788 6.96474 14.9995C6.96474 19.4202 10.5798 23.0352 15.0005 23.0352C19.4211 23.0352 23.0362 19.4202 23.0362 14.9995C23.0362 10.5788 19.4211 6.96376 15.0005 6.96376ZM15.0005 9.64233C17.9772 9.64233 20.3576 12.0227 20.3576 14.9995C20.3576 17.9762 17.9772 20.3566 15.0005 20.3566C12.0237 20.3566 9.64331 17.9762 9.64331 14.9995C9.64331 12.0227 12.0237 9.64233 15.0005 9.64233Z"
+                      fill="#B9D5FD"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<app-order-modal
+  [service]="service"
+  [serviceInput]="true"
+  [isVisible]="isVisible"
+  (isVisibleChange)="isVisible = $event"
+>
+</app-order-modal>

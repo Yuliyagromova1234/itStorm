@@ -1,0 +1,109 @@
+@import "../../../../assets/styles/variables.scss";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  .order-modal {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid $accent-color;
+    border-radius: 10px;
+    width: 727px;
+    height: 489px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .order-modal-title {
+      text-align: center;
+      margin-bottom: 20px;
+      width: 422px;
+    }
+
+    .order-modal-text {
+      margin: 0 0 40px 0;
+    }
+
+    .order-modal-form {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 5px;
+      width: 422px;
+
+      select {
+        background-color: #fff;
+        color: $accent-color;
+        border: 1px solid $accent-color;
+
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+
+        option {
+          background-color: #fff;
+        }
+      }
+
+
+      .order-modal-form-input {
+        box-sizing: border-box;
+        border: 1px solid $accent-color;
+        border-radius: 3px;
+        height: 53px;
+        width: 100%;
+        padding: 0 20px;
+
+        input {
+          border: none;
+          outline: none;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 130%;
+          color: $accent-color;
+          background-color: transparent;
+          height: 100%;
+          width: 100%;
+
+          &::placeholder {
+            color: #a8aba7;
+          }
+        }
+      }
+
+      .order-modal-form-btn {
+        margin-top: 15px;
+        width: 100%;
+      }
+
+    }
+
+    .close {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      cursor: pointer;
+      z-index: 999;
+      padding: 10px;
+
+      &:hover svg line {
+        stroke: $accent-color;
+      }
+    }
+  }
+}
+

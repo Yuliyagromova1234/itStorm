@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="articles">
+    <h2 class="articles-title h2">Блог</h2>
+    <div class="filter">
+      <div class="filter-categories">
+        <div class="filter-categories-item" *ngFor="let item of filterCategories">
+          <div class="filter-categories-item-name">{{ item.name }}</div>
+          <div class="filter-categories-item-delete" (click)="switchFilterSelect(item)">
+            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0.935531" y1="1.15002" x2="12.9563" y2="13.1708" stroke="#709FDC" stroke-linecap="round"/>
+              <line x1="12.9236" y1="1.12984" x2="0.902784" y2="13.1507" stroke="#709FDC" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="filter-select">
+        <div class="filter-select-header"
+             [style.background-color]="filterHeaderStatus ? '#b9d5fd' : 'transparent'"
+             (click)="filterHeaderStatus = !filterHeaderStatus">
+          <div class="filter-select-header-name" [style.width]="filterHeaderStatus ? '170px' : '120px'">Фильтр</div>
+          <div class="filter-select-header-status">
+            <svg [style.transform]="filterHeaderStatus ? 'rotate(180deg)' : 'rotate(0deg)'" width="20" height="20"
+                 viewBox="0 0 20 20" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.99998 5.99997C10.5833 5.99997 11.1667 6.22497 11.6083 6.66663L17.0417 12.1C17.2833 12.3416 17.2833 12.7416 17.0417 12.9833C16.8 13.225 16.4 13.225 16.1583 12.9833L10.725 7.54997C10.325 7.14997 9.67498 7.14997 9.27498 7.54997L3.84165 12.9833C3.59999 13.225 3.19998 13.225 2.95832 12.9833C2.71665 12.7416 2.71665 12.3416 2.95832 12.1L8.39165 6.66663C8.83332 6.22497 9.41665 5.99997 9.99998 5.99997Z"
+                fill="#071739"/>
+            </svg>
+          </div>
+        </div>
+        <div class="filter-select-items" *ngIf="filterHeaderStatus">
+          <div class="filter-select-item"
+               *ngFor="let category of categories"
+               (click)="switchFilterSelect(category)" [style.color]="category.status ? '#071739' : '#bebebe'">
+            <div class="filter-select-item-name">{{ category.name }}</div>
+            <div class="filter-select-item-status">
+              <span>{{ category.status ? '+' : '-' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="articles-items">
+      <article-card *ngFor="let article of articles?.items" [article]="article"></article-card>
+    </div>
+    <div class="pagination">
+      <div class="pagination-prev" (click)="openPrevPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === 1 : true">
+        <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 1L2 9.5L10 18" stroke="#B9D5FD" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <a class="pagination-page" (click)="openPage(page)"
+         [class.active]="this.activeParams.page ? this.activeParams.page === page : (page === 1)"
+         *ngFor="let page of pages">{{ page }}
+      </a>
+
+      <div class="pagination-next" (click)="openNextPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === pages.length : false">
+        <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 18L9 9.5L1 0.999999" stroke="#B9D5FD" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

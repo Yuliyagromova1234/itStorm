@@ -1,0 +1,80 @@
+@import "../../../../assets/styles/variables.scss";
+
+:host {
+  margin-top: auto;
+}
+
+.footer {
+  margin-top: 90px;
+  padding-top: 40px;
+  padding-bottom: 54px;
+  background-color: $light-accent-color;
+
+  .container {
+    .wrapper-navigation {
+      display: grid;
+      grid-template-columns: minmax(85px, 185px) 1fr;
+      align-items: center;
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 40px;
+
+      .logo img {
+        cursor: pointer;
+      }
+
+      .navbar {
+        display: flex;
+        gap: 30px;
+
+        .navbar-item {
+          a {
+            white-space: nowrap;
+            color: $main-text-color;
+            text-decoration: none;
+          }
+          a.active-link {
+            color: $accent-color;
+          }
+        }
+      }
+    }
+    .wrapper-info {
+      display: grid;
+      grid-template-columns: 253px 153px 127px 203px;
+      gap: 60px;
+      .info-item {
+        .info-item-title {
+          font-weight: 500;
+          font-size: 16px;
+          color: $accent-color;
+          margin-bottom: 10px;
+        }
+
+        .info-item-content {
+          display: flex;
+          gap: 12px;
+          a {
+            text-decoration: none;
+            color: $main-text-color;
+            &:hover {
+              color: gray;
+            }
+          }
+          .social-item {
+          }
+        }
+        .info-item-btn {
+          margin-top: 10px;
+          font-size: 12px;
+          font-weight: 500;
+          padding: 10px 20px;
+        }
+      }
+    }
+    .rights {
+      margin-top: 6px;
+      color: $accent-color;
+    }
+  }
+}

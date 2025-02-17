@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="form">
+      <h1 class="h2 title">Войти в личный кабинет</h1>
+      <form [formGroup]="loginForm">
+        <input type="text" placeholder="Электронная почта" class="input" formControlName="email"
+               [style]="{border: loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? '1px solid red' : ''}">
+        <input type="password" placeholder="Пароль" class="input" formControlName="password" autocomplete="off"
+               [style]="{border: loginForm.get('password')?.invalid && loginForm.get('email')?.touched ? '1px solid red' : ''}">
+        <label class="agree">
+          <input type="checkbox" formControlName="rememberMe">
+          <span>Запомнить меня</span>
+        </label>
+        <button class="btn" type="button" [disabled]="loginForm.invalid"(click)="login()">Войти</button>
+      </form>
+      <p class="link">Нет аккаунта? <a routerLink="/signup">Пройдите регистрацию</a></p>
+    </div>
+
+    <div class="image">
+      <img src="assets/images/login-image.png" alt="">
+    </div>
+  </div>
+</div>
